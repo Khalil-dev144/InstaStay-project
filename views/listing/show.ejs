@@ -1,0 +1,50 @@
+<% layout("/layout/boilerplate") %>
+    <script>
+        const coordinate = <%= JSON.stringify(showDetails.geometry.coordinates) %>
+    </script>
+    <div class="container">
+        <div class="row flex-column justify-content-center align-items-center">
+            <div class="col-lg-6 col-md-8 col-sm-10 col-12 text-center mt-3">
+                <h5><b>
+                        <%=showDetails.title%>
+                    </b></h5>
+            </div>
+            <div class="col-lg-6 col-md-8 col-sm-10 col-12">
+                <div class="card">
+                    <img src="<%=showDetails.image.url%>" class="card-img-top show-image" alt="listing image">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <b>Owned By:</b>
+                            <%=showDetails.owner.username%> <br>
+                                <%=showDetails.description%> <br>
+                                    <%=showDetails.price.toLocaleString("en-IN")%> $ <br>
+                                        <%=showDetails.location%>, <%=showDetails.country%> <br>
+
+                                                <!-- Room Status -->
+                                                <% if (showDetails.status==="Booked" ) { %>
+                                                    <span class="badge bg-danger">Booked</span>
+                                                    <% } else { %>
+                                                        <span class="badge bg-success">Available</span>
+                                                        <% } %>
+                        </p>
+
+                        <!-- Booking Button (Disabled if booked) -->
+                        <% if (showDetails.status==="Available" ) { %>
+                            <a href="/listings/<%= showDetails._id %>/booking" class="btn btn-primary">Book Now</a>
+                            <% } else { %>
+                                <button class="btn btn-secondary" disabled>Booked</button>
+                                <% } %>
+                    </div>
+                </div>
+            </div>
+
+            <% if(currUser && showDetails.owner._id.equals(currUser._id)) { %>
+                <div class="show-btn mt-3">
+                    <a href="/listings/<%=showDetails._id%>/edit" class="btn btn-secondary btn-styling">Edit</a>
+                    <a href="/listings/<%=showDetails._id%>/delete" class="btn btn-danger btn-styling">Delete</a>
+                </div>
+                <% } %>
+        </div>
+        <div id="map" class="col-lg-6 col-md-8 col-sm-10 col-12 mx-auto"></div>
+    </div>
+    <script src="/js/leaflet.js"></script>

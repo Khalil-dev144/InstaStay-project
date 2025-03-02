@@ -1,0 +1,75 @@
+<% layout("/layout/boilerplate") %>
+<div class="container mt-5">
+    <h2 class="text-center">Book Your Stay</h2>
+    <form action="/listings/<%= id %>/booking" method="POST" class="row g-3" novalidate class="needs-validation">
+      
+      <!-- Name -->
+      <div class="col-md-6">
+        <label for="name" class="form-label">Full Name</label>
+        <input type="text" id="name" name="name" class="form-control" required>
+      </div>
+  
+      <!-- Email -->
+      <div class="col-md-6">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" name="email" class="form-control" required>
+      </div>
+  
+      <!-- Phone Number -->
+      <div class="col-md-6">
+        <label for="phone" class="form-label">Phone Number</label>
+        <input type="text" id="phone" name="phone" class="form-control" required>
+      </div>
+  
+      <!-- Check-in Date -->
+      <div class="col-md-6">
+        <label for="checkin" class="form-label">Check-in Date</label>
+        <input type="date" id="checkin" name="checkin" class="form-control" required>
+      </div>
+  
+      <!-- Check-out Date -->
+      <div class="col-md-6">
+        <label for="checkout" class="form-label">Check-out Date</label>
+        <input type="date" id="checkout" name="checkout" class="form-control" required>
+      </div>
+  
+      <!-- Number of Guests -->
+      <div class="col-md-6">
+        <label for="guests" class="form-label">Number of Guests</label>
+        <input type="number" id="guests" name="guests" class="form-control" min="1" required>
+      </div>
+  
+      <!-- Room Type -->
+      <div class="col-md-6">
+        <label for="roomType" class="form-label">Room Type</label>
+        <select id="roomType" name="roomType" class="form-select" required>
+          <option value="Single">Single</option>
+          <option value="Double">Double</option>
+          <option value="Suite">Suite</option>
+        </select>
+      </div>
+  
+      <!-- Special Requests -->
+      <div class="col-12">
+        <label for="requests" class="form-label">Special Requests</label>
+        <textarea id="requests" name="requests" class="form-control" rows="3" placeholder="Any specific requirements?"></textarea>
+      </div>
+  
+      <!-- Payment Option -->
+      <div class="col-md-6">
+        <label for="payment" class="form-label">Payment Method</label>
+        <select id="payment" name="payment" class="form-select" required>
+          <option value="Cash">Cash</option>
+          <option value="Credit Card">Credit Card</option>
+          <option value="Online">Online Payment</option>
+        </select>
+      </div>
+  
+      <!-- Submit Button -->
+      <div class="col-12 text-center">
+        <button type="submit" class="btn btn-primary w-50">Confirm Booking</button>
+      </div>
+  
+    </form>
+  </div>
+  

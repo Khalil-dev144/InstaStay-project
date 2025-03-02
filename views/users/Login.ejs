@@ -1,0 +1,24 @@
+<% layout("/layout/boilerplate") %>
+<div class="container-fluid">
+    <div class="row mt-3 mb-3 justify-content-center">
+        <h1 class="col-12 text-center">Login</h1>
+        <div class="col-12 col-md-6 col-lg-4">
+            <form action="/Login" method="post" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="email" class="form-title">Email</label>
+                    <input type="email" name="email" id="email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-title">Password</label>
+                    <input type="password" name="password" id="password" class="form-control" required>
+                </div>
+                <button class="btn btn-success w-100">Login</button>
+                
+            </form>
+            <br>
+           <form action="/signup" method="get">
+            <button class="btn btn-success w-100">SignUp</button>
+           </form>
+        </div>
+    </div>
+</div>

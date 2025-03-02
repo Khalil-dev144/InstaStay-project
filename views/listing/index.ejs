@@ -1,0 +1,34 @@
+<% layout("/layout/boilerplate") %>
+<!-- Navbar Icons -->
+<div class="navbar-icon mt-3 mb-3">
+    <div class="icon"><i class="fa-solid fa-shield-dog"></i><span>Cabins</span></div>
+    <div class="icon"><i class="fa-solid fa-mountain-sun"></i><span>Amazing Views</span></div>
+    <div class="icon"><i class="fa-solid fa-snowflake"></i><span>Snowfall</span></div>
+    <div class="icon"><i class="fa-solid fa-mountain-city"></i><span>Mountain City</span></div>
+    <div class="icon"><i class="fa-solid fa-person-swimming"></i><span>Pools</span></div>
+    <div class="icon"><i class="fa-solid fa-umbrella-beach"></i><span>Beach</span></div>
+    <div class="icon"><i class="fa-solid fa-sailboat"></i><span>Boats</span></div>
+    <div class="icon"><i class="fa-solid fa-fire"></i><span>Trending</span></div>
+    <div class="icon"><i class="fa-solid fa-tractor"></i><span>Farms</span></div>
+    <div class="icon"><i class="fa-solid fa-tree-city"></i><span>Top Cities</span></div>
+    <div class="icon"><i class="fa-solid fa-hotel"></i><span>Home</span></div>
+    <div class="icon"><i class="fa-solid fa-bed"></i><span>Rooms</span></div>
+    <div class="icon"><i class="fa-solid fa-display"></i><span>Adapted</span></div>
+</div>
+
+<!-- Listing Cards -->
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4 ms-2 me-2">
+    <% for(listing of allListings) { %>
+    <a href="/listings/<%=listing._id%>" class="listing-links">
+        <div class="card listing-card">
+            <img src="<%=listing.image.url%>" class="card-img-top" alt="Listing Image">
+            <div class="card-body">
+                <p class="card-text">
+                    <b><%= listing.title %></b><br>
+                    PKR <%= listing.price.toLocaleString("en-IN") %>/ night
+                </p>
+            </div>
+        </div>
+    </a>
+    <% } %>
+</div>

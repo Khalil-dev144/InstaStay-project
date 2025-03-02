@@ -1,0 +1,52 @@
+<% layout("/layout/boilerplate") %>
+    <div class="container-fluid px-0">
+        <div class="row mx-0">
+            <div class="col-12 col-md-8 offset-md-2">
+                <div class="text-center">
+                    <h3>Create New List</h3>
+                </div>
+                <form method="POST" action="/listings/new" novalidate class="needs-validation"
+                    enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" name="title" placeholder="Enter the title" class="form-control w-100"
+                            required>
+                        <div class="valid-feedback">Your title looks good!</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea name="description" class="form-control w-100" required></textarea>
+                        <div class="invalid-feedback">Please enter a short description</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="file" class="form-label">Image</label>
+                        <input type="file" name="image" class="form-control w-100">
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-12 col-md-4">
+                            <label for="Price" class="form-label">Price</label>
+                            <input type="number" name="price" placeholder="Enter the price" class="form-control w-100"
+                                required>
+                            <div class="invalid-feedback">Price should be valid</div>
+                        </div>
+                        <div class="mb-3 col-12 col-md-8">
+                            <label for="country" class="form-label">Country</label>
+                            <input type="text" name="country" placeholder="Enter the country" class="form-control w-100"
+                                required>
+                            <div class="invalid-feedback">Country should be valid</div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="location" class="form-label">Location</label>
+                        <input type="text" name="location" placeholder="karak, kpk, pakistan" class="form-control w-100"
+                            required>
+                        <div class="invalid-feedback">Location should be valid</div>
+                    </div>
+                    <div class="col-12 text-center">
+                        <button class="btn btn-success btn-lg w-50">Add</button>
+                    </div>
+                    <br><br>
+                </form>
+            </div>
+        </div>
+    </div>

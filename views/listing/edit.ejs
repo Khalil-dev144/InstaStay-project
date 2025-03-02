@@ -1,0 +1,67 @@
+<% layout("/layout/boilerplate") %>
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <div class="card shadow-sm p-4">
+                <h3 class="text-center mb-4">Edit Listing</h3>
+                <form method="POST" action="/listings/<%=editlisting._id%>/edit?_method=PUT" novalidate
+                    class="needs-validation" enctype="multipart/form-data">
+                    
+                    <!-- Title -->
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" name="title" value="<%=editlisting.title%>" class="form-control" required>
+                        <div class="invalid-feedback">Title is required</div>
+                    </div>
+                    
+                    <!-- Description -->
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea name="description" rows="5" class="form-control" required><%=editlisting.description%></textarea>
+                        <div class="invalid-feedback">Please enter a short description</div>
+                    </div>
+                    
+                    <!-- Image Preview -->
+                    <div class="mb-3 text-center">
+                        <img src="<%=editingUrl%>" alt="Edited Image" class="img-fluid rounded shadow-sm" style="max-height: 200px;">
+                    </div>
+                    
+                    <!-- Upload New Image -->
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Upload New Image</label>
+                        <input type="file" name="image" class="form-control">
+                    </div>
+                    
+                    <div class="row">
+                        <!-- Price -->
+                        <div class="mb-3 col-md-4">
+                            <label for="price" class="form-label">Price ($)</label>
+                            <input type="number" name="price" value="<%=editlisting.price%>" class="form-control" required>
+                            <div class="invalid-feedback">Price cannot be negative</div>
+                        </div>
+                        
+                        <!-- Country -->
+                        <div class="mb-3 col-md-8">
+                            <label for="country" class="form-label">Country</label>
+                            <input type="text" name="country" value="<%=editlisting.country%>" class="form-control" required>
+                            <div class="invalid-feedback">Enter a valid country</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Location -->
+                    <div class="mb-3">
+                        <label for="location" class="form-label">Location</label>
+                        <input type="text" name="location" value="<%=editlisting.location%>" class="form-control" required>
+                        <div class="invalid-feedback">Invalid Location</div>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="d-grid">
+                        <button class="btn btn-success btn-lg">Update Listing</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/script.js"></script>

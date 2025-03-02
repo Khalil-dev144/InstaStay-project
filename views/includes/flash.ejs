@@ -1,0 +1,36 @@
+<style>
+    .custom-alert {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30%;
+    min-width: 250px;
+    text-align: center;
+    z-index: 1050;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .custom-alert {
+        width: 90%; 
+        left: 5%;
+        transform: translateX(0);
+    }
+}
+</style>
+
+<% if(success && success.length) { %>
+    <div class="alert alert-success alert-dismissible fade show custom-alert" role="alert">
+        <%= success %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
+
+<% if(error && error.length) { %>
+    <div class="alert alert-danger alert-dismissible fade show custom-alert" role="alert">
+        <%= error %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
+
