@@ -57,12 +57,13 @@ const sessionStore = MongoStore.create({
     }
 });
 
+
 sessionStore.on("error", (err) => {
     console.log("❌ Session Store Error:", err);
 });
 
 const sessionOptions = {
-    store: sessionStore,
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_ATLAS_URL }),
     secret: process.env.SESSION_SECRET || "FirstProject",
     resave: false,
     saveUninitialized: true,
