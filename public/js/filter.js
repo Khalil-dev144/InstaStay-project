@@ -21,7 +21,7 @@ document.getElementById("searchBtn").addEventListener("pointerdown", async () =>
     // Prepare request body (only include location if it exists)
     const requestBody = locationInput ? { price, location: locationInput } : { price };
     try {
-        const response = await fetch("http://localhost:3000/listings/filter", {
+        const response = await fetch("https://insta-stay-project.vercel.app/listings/filter", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(requestBody)
