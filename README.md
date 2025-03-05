@@ -22,7 +22,7 @@
 ### **Backend**
 - **Node.js & Express.js** – Backend logic and API handling.
 - **MongoDB (MongoDB Atlas)** – Cloud-based database for storing user and booking data.
-**Authentication** – Secure user authentication using Passport.js with session-based authentication.
+- **Authentication** – Secure user authentication using Passport.js with session-based authentication.
 
 
 ### **Deployment**
