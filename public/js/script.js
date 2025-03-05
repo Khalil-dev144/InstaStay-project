@@ -17,3 +17,20 @@
       }, false)
     })
   })()
+
+  // Navbar toggler
+  document.addEventListener("DOMContentLoaded", function () {
+    const navbarToggler = document.querySelector(".navbar-toggler");
+    const navbarCollapse = document.querySelector("#navbarNavAltMarkup");
+    const icon = navbarToggler.querySelector("i");
+
+    navbarToggler.addEventListener("click", function () {
+      if (navbarCollapse.classList.contains("show")) {
+        icon.classList.remove("fa-times");
+        icon.classList.add("fa-bars");
+      } else {
+        icon.classList.remove("fa-bars");
+        icon.classList.add("fa-times");
+      }
+    });
+  });

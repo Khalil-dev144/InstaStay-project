@@ -1,15 +1,19 @@
 body {
     background-color: blueviolet;
-    font-style: Serif;  /* For heading */
-    /* font-style: Sans-Serif; */ /* For body */
+    font-style: Serif;
+
+    /* For heading */
+    /* font-style: Sans-Serif; */
+    /* For body */
     .bree-serif-regular {
         font-family: "Bree Serif", serif;
         font-weight: 400;
         font-style: normal;
-      }
-      
+    }
+
 }
-html{
+
+html {
     scroll-behavior: smooth;
 }
 
@@ -26,32 +30,33 @@ html{
 .custom-toggler {
     border: none !important;
     outline: none !important;
-  }
+}
 
-  .navbar-collapse {
+.navbar-collapse {
     background: white;
     padding: 10px;
     border-radius: 5px;
-  }
+    z-index: 1;
+}
 
-  .navbar-nav .nav-link {
+.navbar-nav .nav-link {
     padding: 10px;
-  }
+}
 
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
     .navbar-collapse {
-      text-align: center;
+        text-align: center;
     }
 
     .navbar-nav {
-      width: 100%;
+        width: 100%;
     }
 
     .navbar-nav .nav-link {
-      padding: 10px 15px;
-      display: block;
+        padding: 10px 15px;
+        display: block;
     }
-  }
+}
 
 
 /* Scrollable Navbar */
@@ -60,14 +65,17 @@ html{
     gap: 20px;
     overflow-x: auto;
     white-space: nowrap;
-    scrollbar-width: none; /* Hide scrollbar for Firefox */
-    -ms-overflow-style: none; /* Hide scrollbar for IE */
+    scrollbar-width: none;
+    /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none;
+    /* Hide scrollbar for IE */
     scroll-behavior: smooth;
     width: 100%;
 }
 
 .navbar-icon::-webkit-scrollbar {
-    display: none; /* Hide scrollbar for Chrome/Safari */
+    display: none;
+    /* Hide scrollbar for Chrome/Safari */
 }
 
 .icon {
@@ -91,6 +99,7 @@ html{
     transform: scale(1.1);
     color: #007bff;
 }
+
 /* navbar section styling */
 
 /* Footer section Styling */
@@ -155,7 +164,8 @@ footer {
 }
 
 /* Sticky Footer */
-html, body {
+html,
+body {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -164,10 +174,11 @@ html, body {
 main {
     flex: 1;
 }
+
 /* footer css ended */
 
- /* Card Styling */
- .listing-links {
+/* Card Styling */
+.listing-links {
     text-decoration: none;
 }
 
@@ -203,17 +214,18 @@ main {
 
 /* Show page listings styling */
 
-.show-style{
+.show-style {
     margin-top: 1.5rem !important;
 }
 
-.show-btn{
+.show-btn {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: 0 !important;
 }
-.btn-styling{
+
+.btn-styling {
     margin-left: 1rem !important;
 }
 
@@ -253,39 +265,47 @@ body {
     padding: 5px 10px;
     border-radius: 5px;
 }
+
 .bg-success {
     background-color: #28a745;
     color: white;
 }
+
 .bg-danger {
     background-color: #dc3545;
     color: white;
 }
+
 /* show page listing styling ended */
 
 /* edit page listing styling */
 body {
     background-color: #b9b2a2;
 }
+
 .card {
     border-radius: 12px;
 }
+
 .btn-success {
     background-color: #28a745;
     border: none;
     transition: 0.3s;
 }
+
 .btn-success:hover {
     background-color: #218838;
 }
+
 /* edit page listing styling */
 
 /* Review part */
-.review{
+.review {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
 }
+
 /* Review styling end */
 
 /* map styling */
@@ -295,24 +315,33 @@ body {
     border-radius: 10px;
     margin-top: 20px;
 }
+
 /* map styling ended */
 
+/* Login page Styling */
+.login-page a {
+    text-decoration: none;
+}
 
 /* About Us Page sections */
 .hero-section {
     background: url('https://images.pexels.com/photos/518244/pexels-photo-518244.jpeg?auto=compress&cs=tinysrgb&w=600') center/cover no-repeat;
     padding: 100px 0;
 }
+
 .mission-section {
     background: #007bff;
     padding: 60px 0;
 }
+
 .contact-section {
     background: #e2e2e0;
     padding: 60px 0;
 }
+
 .icon-img {
-   width: 100px;
-   height: auto;
+    width: 100px;
+    height: auto;
 }
+
 /* AboutUs Page section ended */

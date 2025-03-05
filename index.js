@@ -35,7 +35,7 @@ app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
 
 // MongoDB connection
-const dbUrl = process.env.MONGO_ATLAS_URL || "mongodb://localhost:27017/instay";
+const dbUrl = process.env.MONGO_ATLAS_URL || "mongodb://localhost:27017/myapp";
 
 async function connectDB() {
     try {
