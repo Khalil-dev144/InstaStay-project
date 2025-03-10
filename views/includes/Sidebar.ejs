@@ -1,0 +1,23 @@
+<div class="d-flex">
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar bg-dark text-white vh-100">
+        <div class="d-flex justify-content-between align-items-center p-3">
+            <h3 class="text-center flex-grow-1">InstaStay Admin</h3>
+            <button id="close-sidebar" class="btn btn-outline-light btn-sm d-md-none"><i class="fas fa-times"></i></button>
+        </div>
+        <a href="/admin" class="menu-link"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="/admin/user" class="menu-link"><i class="fas fa-users"></i> Users</a>
+        <a href="/admin/listing" class="menu-link"><i class="fas fa-building"></i> Listings</a>
+        <a href="/admin/booking" class="menu-link"><i class="fas fa-calendar-check"></i> Bookings</a>
+        <a href="/admin/review" class="menu-link"><i class="fas fa-star"></i> Reviews</a>
+        <a href="#" class="menu-link"><i class="fas fa-dollar-sign"></i> Transactions</a>
+        <a href="/admin/analytics" class="menu-link"><i class="fas fa-chart-bar"></i> Analytics</a>
+        <a href="/admin/setting" class="menu-link"><i class="fas fa-cog"></i> Settings</a>
+    </div>
+
+    <!-- Page Content -->
+    <div id="page-content" class="flex-grow-1 p-3">
+        <button id="toggle-sidebar" class="btn btn-dark d-md-none mb-3"><i class="fas fa-bars"></i></button>
+        <%- body %>
+    </div>
+</div>

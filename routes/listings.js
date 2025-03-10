@@ -96,7 +96,7 @@ router.post("/filter", async (req, res) => {
         // Convert `price` to an integer and validate it
         price = parseInt(price);
         if (isNaN(price)) {
-            return res.status(400).json({ error: "⚠️ Invalid price. Please enter a valid numeric price." });
+            return res.status(400).json({ error: "Invalid price. Please enter a valid numeric price." });
         }
 
         // Step 1: Filter based on price only
@@ -114,7 +114,7 @@ router.post("/filter", async (req, res) => {
         if (location && typeof location === "string") {
             query.location = { $regex: new RegExp(location, "i") };
 
-            console.log("the mongoose query is: ",query);
+            console.log("the mongoose query is: ", query);
             let locationFilteredRooms = await Listing.find(query);
             console.log("Rooms Found (Price & Location-based):", locationFilteredRooms.length);
 
@@ -129,23 +129,23 @@ router.post("/filter", async (req, res) => {
             return res.json(filteredRooms);
         }
 
-        return res.status(404).json({ message: "🚫 No rooms found within the given price range." });
+        return res.status(404).json({ message: "No rooms found within the given price range." });
 
     } catch (error) {
         // Handle CastError specifically
         if (error instanceof mongoose.Error.CastError) {
-            return res.status(400).json({ error: "⚠️ Invalid data format. Please check your input values." });
+            return res.status(400).json({ error: "Invalid data format. Please check your input values." });
         }
         res.status(500).json({ error: "Internal server error. Please try again later." });
     }
 });
 
 //Booking get Route
-router.get("/:id/booking",isloggedIn, (req, res)=>{
+router.get("/:id/booking", isloggedIn, (req, res) => {
     console.log("My name is Muhammad Khaili");
     let { id } = req.params;
     console.log("The room id is: ", id);
-    res.render("listing/booking.ejs", {id});
+    res.render("listing/booking.ejs", { id });
 })
 
 // Booking post route
@@ -199,7 +199,7 @@ router.post("/:id/booking", isloggedIn, async (req, res, next) => {
         await newBooking.save();
 
         // Update the listing status to "Booked"
-        listing.status = "Booked"; 
+        listing.status = "Booked";
         await listing.save();
 
         req.flash("success", "Booking successful!");
@@ -210,7 +210,7 @@ router.post("/:id/booking", isloggedIn, async (req, res, next) => {
 });
 
 //AboutUs page get route
-router.get("/AboutUs", (req, res)=>{
+router.get("/AboutUs", (req, res) => {
     res.render("listing/AboutUs.ejs");
 });
 
@@ -259,18 +259,27 @@ router.put("/:id/edit", upload.single("image"), isloggedIn, IsOwner, async (req,
     }
 })
 
-//Delete listing Route
+// Delete listing Route
 router.get("/:id/delete", isloggedIn, IsOwner, async (req, res, next) => {
     try {
         let { id } = req.params;
+
+        // Delete related bookings before deleting the listing
+        const deletedBookings = await Booking.deleteMany({ listing: id });
+        console.log("Deleted Bookings:", deletedBookings);
+
+
+        // Delete the listing
         await Listing.findByIdAndDelete(id);
-        //flash listing Delete
-        req.flash("success", "Listing Deleted!");
+
+        // Flash message for success
+        req.flash("success", "Listing and associated bookings deleted!");
         res.redirect("/listings");
     } catch (err) {
         next(err);
     }
-})
+});
+
 
 //Read listing Route
 router.get("/:id", async (req, res) => {

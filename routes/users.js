@@ -1,22 +1,35 @@
 const express = require("express");
 const router = express.Router();
-//isAuthenication middleware
-const { saveRedirectUrl} = require("../middleware.js");
 const passport = require("passport");
 const User = require("../models/User.js");
+const {validationResult } = require("express-validator");
+const { saveRedirectUrl, validateSignup } = require("../middleware.js");
 
-
-//SignUp form
+// Render Signup Form
 router.get("/signup", (req, res) => {
-    res.render("users/SignUp.ejs");
-})
+    res.render("users/normal/SignUp.ejs");
+});
 
-//Save The SignUp data
-router.post("/SignUp", async (req, res, next) => {
+// Handle Signup with Validation
+router.post("/signup", validateSignup, async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        req.flash("error", errors.array().map(err => err.msg).join(", "));
+        return res.redirect("/signup");
+    }
+
     try {
-        let {username, email, password } = req.body; 
-        let newUser = new User({ username, email }); 
+        const { username, email, password } = req.body;
 
+        // Check if the email is already registered
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            req.flash("error", "Email is already registered! Please log in.");
+            return res.redirect("/signup");
+        }
+
+        // Register the user
+        let newUser = new User({ username, email });
         let registeredUser = await User.register(newUser, password);
         console.log(registeredUser);
 
@@ -30,33 +43,33 @@ router.post("/SignUp", async (req, res, next) => {
         });
 
     } catch (error) {
-        req.flash("error", "Email is already registered!");
-        res.redirect("/SignUp");
+        req.flash("error", "An error occurred. Please try again.");
+        res.redirect("/signup");
     }
 });
 
-//Login form
+// Render Login Form
 router.get("/login", (req, res) => {
-    res.render("users/Login.ejs");
-})
+    res.render("users/normal/Login.ejs");
+});
 
-//Login form post Request to check the user is present or not
-router.post("/Login", saveRedirectUrl,
+// Handle Login with Validation
+router.post("/login", saveRedirectUrl,
     passport.authenticate("local", {
-        failureRedirect: "/Login",
+        failureRedirect: "/login",
         failureFlash: true,
     }), (req, res) => {
         req.flash("success", "Welcome back to InstaStay!");
-        //check the user is logged in then go to the page that he accessed.
+        
         if (res.locals.RedirectUrl) {
             res.redirect(res.locals.RedirectUrl);
         } else {
             res.redirect("/listings");
         }
+    }
+);
 
-    });
-
-//Logout Route to logged out the user.
+// Logout Route
 router.get("/logout", (req, res) => {
     req.logout((err) => {
         if (err) {
@@ -65,7 +78,7 @@ router.get("/logout", (req, res) => {
             req.flash("success", "You logged out!");
             res.redirect("/listings");
         }
-    })
-})
+    });
+});
 
 module.exports = router;

@@ -1,0 +1,88 @@
+<% layout("/layout/admin-dashboard.ejs") %>
+    <div class="container mt-4">
+        <h2 class="text-center mb-4">📊 Admin Analytics</h2>
+
+        <div class="row">
+
+            <!-- Total Revenue -->
+            <div class="col-md-3">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-header">💰 Total Revenue</div>
+                    <div class="card-body">
+                        <h4 class="card-title">$<%= totalRevenue %>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total Bookings -->
+            <div class="col-md-3">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-header">📅 Total Bookings</div>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <%= bookings.length %>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total Users -->
+            <div class="col-md-3">
+                <div class="card text-white bg-info mb-3">
+                    <div class="card-header">👤 Total Users</div>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <%= users.length %>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total Listings -->
+            <div class="col-md-3">
+                <div class="card text-white bg-warning mb-3">
+                    <div class="card-header">🏨 Total Listings</div>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <%= listings.length %>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bookings Table -->
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>No.</th>
+                        <th>User</th>
+                        <th>Listing</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% bookings.forEach((booking, index)=> { %>
+                        <tr>
+                            <td>
+                                <%= index + 1 %>
+                            </td>
+                            <td>
+                                <%= booking.user.username %>
+                            </td>
+                            <td>
+                                <%= booking.listing.title %>
+                            </td>
+                            <td>$<%= booking.listing.price %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    </div>

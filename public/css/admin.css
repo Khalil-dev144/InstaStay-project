@@ -1,0 +1,68 @@
+.sidebar {
+    width: 250px;
+    position: fixed;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    transition: all 0.3s;
+}
+
+.menu-link {
+    display: block;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.menu-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#page-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+/* Hide sidebar on small screens by default */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        z-index: 2;
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    #page-content {
+        margin-left: 0px;
+        padding: 20px;
+    }
+}
+
+/* admin users page styling */
+    /* Ensure table does not break on small screens */
+    .table-responsive {
+        white-space: nowrap;
+    }
+
+    /* Reduce padding and font size for better fit */
+    .table th, .table td {
+        padding: 8px;
+        font-size: 14px;
+
+    }
+
+    @media (max-width: 576px) {
+        
+        .table th, .table td {
+            font-size: 12px;
+            padding: 6px;
+        }
+
+        /* Hide button text on small screens */
+        .btn-sm span {
+            display: none;
+        }
+    }

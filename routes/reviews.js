@@ -17,9 +17,10 @@ router.post("", isloggedIn, async (req, res, next) => {
             return res.redirect("/listings");  // Redirect if not found
         }
 
-        let { Rating, comment } = req.body;
+        let { rating, comment } = req.body;
+        console.log("Review:", rating, comment);
         let revs = new Review({
-            rating: Rating,
+            rating: rating,
             comment: comment,
             Author: req.user._id
         });
@@ -27,7 +28,7 @@ router.post("", isloggedIn, async (req, res, next) => {
         list.reviews.push(revs);
         await revs.save();
         await list.save();
-        console.log("Review Added:", Rating, comment);
+        console.log("Review Added:", rating, comment);
 
         req.flash("success", "Review Added!");
         res.redirect(`/listings/${req.params.id}`);

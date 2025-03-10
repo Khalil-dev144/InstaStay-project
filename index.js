@@ -17,10 +17,12 @@ const MongoStore = require("connect-mongo"); // For session storage
 const cors = require("cors");
 
 const User = require("./models/User.js");
-const { saveRedirectUrl, IsOwner, IsReviewedAuthor } = require("./middleware.js");
+const { saveRedirectUrl, IsOwner, IsReviewedAuthor, isAdmin } = require("./middleware.js");
 const listingsRoutes = require("./routes/listings.js");
 const reviewRoutes = require("./routes/reviews.js");
 const UsersRoutes = require("./routes/users.js");
+const adminRoutes = require("./routes/admin.js");
+const adminlistingsRoutes = require("./routes/adminlisting.js");
 
 const port = process.env.PORT || 3000; // Use environment port if available
 
@@ -40,9 +42,9 @@ const dbUrl = process.env.MONGO_ATLAS_URL || "mongodb://localhost:27017/myapp";
 async function connectDB() {
     try {
         await mongoose.connect(dbUrl);
-        console.log("✅ Successfully connected to MongoDB!");
+        console.log("Successfully connected to MongoDB!");
     } catch (err) {
-        console.error("❌ MongoDB Connection Error:", err);
+        console.error("MongoDB Connection Error:", err);
         process.exit(1); // Exit the application on failure
     }
 }
@@ -59,7 +61,7 @@ const sessionStore = MongoStore.create({
 
 
 sessionStore.on("error", (err) => {
-    console.log("❌ Session Store Error:", err);
+    console.log("Session Store Error:", err);
 });
 
 const sessionOptions = {
@@ -95,7 +97,7 @@ app.use((req, res, next) => {
 
 // Root route
 app.get("/", (req, res) => {
-    console.log("🌍 Root route accessed");
+    console.log("Root route accessed");
     res.send("Welcome to Instay!");
 });
 
@@ -103,6 +105,9 @@ app.get("/", (req, res) => {
 app.use("/listings", listingsRoutes);
 app.use("/listings/:id/reviews", reviewRoutes);
 app.use(UsersRoutes);
+app.use("/admin", adminlistingsRoutes);
+app.use("/admin", adminRoutes);
+
 
 // Handle undefined routes
 app.all("*", (req, res, next) => {

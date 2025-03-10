@@ -1,0 +1,71 @@
+<% layout("/layout/admin-dashboard.ejs") %>
+    <div>
+        <h3 class="text-center fw-bold mb-3">All Bookings</h3>
+
+        <div class="row d-flex justify-content-center align-items-center mt-3">
+            <div class="col-md-5 mb-3">
+                <div class="card text-center shadow-lg rounded">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Total Room Booked</h5>
+                        <p class="card-text fs-4 text-success">
+                            <%= bookings.length%>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Responsive Table Wrapper -->
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>No.</th>
+                        <th>User</th>
+                        <th>Listing</th>
+                        <th class="d-none d-sm-table-cell">Amount</th>
+                        <th>Check-in</th>
+                        <th>Check-out</th>
+                        <th class="d-none d-lg-table-cell">Room-Type</th>
+                        <th class="d-none d-sm-table-cell">Payment</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% bookings.forEach((booking, index)=> { %>
+                        <tr>
+                            <td>
+                                <%= index + 1 %>
+                            </td>
+                            <td>
+                                <%= booking.user.username %>
+                            </td>
+                            <td>
+                                <%= booking.listing.title %>
+                            </td>
+                            <td class="d-none d-sm-table-cell">$<%= booking.listing.price %>
+                            </td>
+                            <td>
+                                <%= new Date(booking.checkin).toLocaleDateString("en-US") %>
+                            </td>
+                            <td>
+                                <%= new Date(booking.checkout).toLocaleDateString("en-US") %>
+                            </td>
+                            <td class="d-none d-sm-table-cell">
+                                <%= booking.roomType %>
+                            </td>
+                            <td class="d-none d-sm-table-cell">
+                                <%= booking.payment %>
+                            </td>
+                            <td>
+                                <a href="/admin/edit-booking/<%= booking._id %>"
+                                    class="btn btn-warning btn-sm rounded-pill">
+                                    <i class="fas fa-edit"></i> <span class="d-sm-inline">Edit</span>
+                                </a>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>

@@ -1,0 +1,37 @@
+<% layout("/layout/admin-dashboard.ejs") %>
+
+<div>
+    <h3 class="text-center text-dark fw-bold mb-3">Edit Booking</h3>
+
+    <form action="/admin/edit-booking/<%= booking._id %>?_method=PUT" method="POST">
+        <div class="mb-3">
+            <label class="form-label">Check-in Date</label>
+            <input type="date" name="checkin" class="form-control" value="<%= booking.checkin.toISOString().split('T')[0] %>" required>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Check-out Date</label>
+            <input type="date" name="checkout" class="form-control" value="<%= booking.checkout.toISOString().split('T')[0] %>" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Room Type</label>
+            <select name="roomType" class="form-control">
+                <option value="Single" <%= booking.roomType === 'Single' ? 'selected' : '' %>>Single</option>
+                <option value="Double" <%= booking.roomType === 'Double' ? 'selected' : '' %>>Double</option>
+                <option value="Suite" <%= booking.roomType === 'Suite' ? 'selected' : '' %>>Suite</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Payment Status</label>
+            <select name="payment" class="form-control">
+                <option value="Pending" <%= booking.payment === 'Pending' ? 'selected' : '' %>>Pending</option>
+                <option value="Completed" <%= booking.payment === 'Completed' ? 'selected' : '' %>>Completed</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update Booking</button>
+        <a href="/admin/booking" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

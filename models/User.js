@@ -10,6 +10,10 @@ let UserSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true // Prevent duplicate emails
+    },
+    isAdmin: { 
+        type: Boolean, 
+        default: false 
     }
 });
 

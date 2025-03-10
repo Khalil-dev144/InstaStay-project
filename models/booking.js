@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Review = require("./review.js");
 const User = require("./User.js");
+const Listing = require("./listing.js");
 
 const bookingSchema = new mongoose.Schema({
     user: {
@@ -10,7 +11,7 @@ const bookingSchema = new mongoose.Schema({
     },
     listing: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Listing", 
+        ref: "List", 
         required: true
     },
     name: {

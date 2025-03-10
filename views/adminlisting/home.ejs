@@ -1,0 +1,58 @@
+<% layout("/layout/admin-dashboard.ejs")%>
+<div class="container mt-4">
+    <h2 class="mb-4 fw-bold text-dark">Welcome, Admin!</h2>
+
+    <!-- Quick Stats -->
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Total Users</h5>
+                    <p class="card-text fs-3"><%= users.length %></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Bookings</h5>
+                    <p class="card-text fs-3"><%= bookings.length %></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Revenue</h5>
+                    <p class="card-text fs-3">$<%= Revenue %></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-secondary mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Listings</h5>
+                    <p class="card-text fs-3"><%= listings.length %></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-danger mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Pending Requests</h5>
+                    <p class="card-text fs-3">42</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activities -->
+    <div class="card mt-3">
+        <div class="card-header">Recent Activities</div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">User <b>JohnDoe</b> booked a room.</li>
+            <li class="list-group-item">New user <b>JaneSmith</b> registered.</li>
+            <li class="list-group-item">Booking #456 was canceled.</li>
+        </ul>
+    </div>
+</div>

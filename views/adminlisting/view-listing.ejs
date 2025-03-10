@@ -1,0 +1,51 @@
+<% layout("/layout/admin-dashboard.ejs") %>
+<div>
+    <h3 class="text-center fw-bold mb-3">All Listings</h3>
+    
+    <div class="row d-flex justify-content-center align-items-center mt-3">
+        <div class="col-md-5 mb-3">
+            <div class="card text-center shadow-lg rounded">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Total Users</h5>
+                    <p class="card-text fs-4 text-primary"><%= users.length %></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 mb-3">
+            <div class="card text-center shadow-lg rounded">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Total Lists</h5>
+                    <p class="card-text fs-4 text-success"><%= listings.length%></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <table class="table table-hover table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>No.</th>
+                <th>Listing Title</th>
+                <th>Location</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% listings.forEach((listing, index) => { %>
+                <tr>
+                    <td><%= index + 1 %></td>
+                    <td><%= listing.title %></td>
+                    <td><%= listing.location %></td>
+                    <td>$<%= listing.price %></td>
+                    <td>
+                        <a href="/admin/delete-listing/<%= listing._id %>" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash"></i><span class="d-sm-inline">Delete</span>
+                        </a>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>

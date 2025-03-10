@@ -5,9 +5,9 @@
     <div class="container">
         <div class="row flex-column justify-content-center align-items-center">
             <div class="col-lg-6 col-md-8 col-sm-10 col-12 text-center mt-3">
-                <h5><b>
+                <h3 class="fw-bold mb-3">
                         <%=showDetails.title%>
-                    </b></h5>
+                    </h3>
             </div>
             <div class="col-lg-6 col-md-8 col-sm-10 col-12">
                 <div class="card">
@@ -45,6 +45,69 @@
                 </div>
                 <% } %>
         </div>
-        <div id="map" class="col-lg-6 col-md-8 col-sm-10 col-12 mx-auto"></div>
+    </div>
+    <div class="container mt-5">
+        <h2 class="text-center">Reviews</h2>
+
+        <% if (showDetails.reviews.length> 0) { %>
+            <div class="row mt-3 justify-content-center">
+                <% showDetails.reviews.forEach(review=> { %>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body">
+                                <h5 class="card-title"><strong>@<%= review.Author.username %></strong></h5>
+                                <p class="card-text">
+                                    <strong>Rating:</strong>
+                                    <span class="text-warning">
+                                        <% for (let i=0; i < review.rating; i++) { %>
+                                            <i class="fa-solid fa-star"></i>
+                                            <% } %>
+                                    </span>
+                                </p>
+                                <p class="card-text"><strong>Comment:</strong>
+                                    <%= review.comment %>
+                                </p>
+                                <form action="/listings/<%= showDetails._id %>/reviews/<%=review._id%>" method="post">
+                                    <button class="btn btn-outline-danger">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <% }); %>
+            </div>
+            <% } else { %>
+                <p class="text-muted text-center">No reviews yet. Be the first to leave one!</p>
+                <% } %>
+
+                    <!-- Review Form -->
+<div class="card shadow-none mt-4 col-lg-6 col-md-8 col-sm-10 col-12">
+    <div class="card-body listing-card">
+        <h4 class="card-title text-center">Leave a Review</h4>
+        <form action="/listings/<%= showDetails._id %>/reviews" method="POST">
+            <div class="mb-3">
+                <label for="rating" class="form-label">Rating:</label>
+                <div class="star-rating">
+                    <input type="hidden" name="rating" id="rating" required>
+                    <i class="fa-regular fa-star" style="color: rgb(212, 209, 209);" data-value="1"></i>
+                    <i class="fa-regular fa-star" style="color: rgb(212, 209, 209);" data-value="2"></i>
+                    <i class="fa-regular fa-star" style="color: rgb(212, 209, 209);" data-value="3"></i>
+                    <i class="fa-regular fa-star" style="color: rgb(212, 209, 209);" data-value="4"></i>
+                    <i class="fa-regular fa-star" style="color: rgb(212, 209, 209);" data-value="5"></i>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="comment" class="form-label">Comment:</label>
+                <textarea name="comment" class="form-control" rows="3" required></textarea>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary mb-3">Submit Review</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <div id="map" class="col-lg-6 col-md-8 col-sm-10 col-12 mx-auto"></div>
     </div>
     <script src="/js/leaflet.js"></script>

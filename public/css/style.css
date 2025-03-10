@@ -306,6 +306,12 @@ body {
     flex-direction: column;
 }
 
+.star-rating i {
+    font-size: 30px;
+    margin: 0 2px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
 /* Review styling end */
 
 /* map styling */
